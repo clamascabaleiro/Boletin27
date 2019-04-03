@@ -11,9 +11,8 @@ package boletin_calculadora;
  */
 public class Calculadora extends javax.swing.JFrame {
 
-    String memoria1;
-    String memoria2;
-    String operacion;
+    private int operador = 0;
+    private final String[] operadores = {" + ", " - ", " * ", " / "};
     /**
      * Creates new form Calculadora
      */
@@ -260,7 +259,6 @@ public class Calculadora extends javax.swing.JFrame {
             .addGroup(Panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel1Layout.createSequentialGroup()
                         .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,11 +277,12 @@ public class Calculadora extends javax.swing.JFrame {
                             .addComponent(bCinco)
                             .addComponent(bMultiplicar))
                         .addGap(26, 26, 26)
-                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bUno)
-                            .addComponent(bDos)
-                            .addComponent(bTres)
-                            .addComponent(bRestar))
+                        .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bUno, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(bDos)
+                                .addComponent(bTres)
+                                .addComponent(bRestar)))
                         .addGap(18, 18, 18)
                         .addGroup(Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bIgual)
@@ -318,66 +317,130 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void bNueveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNueveActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() + "9");
+        tPantalla.setText(tPantalla.getText().concat("9"));
     }//GEN-LAST:event_bNueveActionPerformed
 
     private void bDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDividirActionPerformed
-        tPantalla.setText(tPantalla.getText() +"/");
+         tPantalla.setText(tPantalla.getText().concat(operadores[3]));
+        String[] numeros = tPantalla.getText().split(" ");
+        double resultado;
+        if(numeros.length>2){
+            switch(operador){
+                case 1: resultado = Double.valueOf(numeros[0]) + Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 2: resultado = Double.valueOf(numeros[0]) - Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 3: resultado = Double.valueOf(numeros[0]) * Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 4: resultado = Double.valueOf(numeros[0]) / Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                default: break;
+            }
+        }
+        operador = 4;
+    //GEN-LAST:event_bdivActionPerformed
     }//GEN-LAST:event_bDividirActionPerformed
 
     private void bDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDosActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"2");
+        tPantalla.setText(tPantalla.getText().concat("2"));
     }//GEN-LAST:event_bDosActionPerformed
 
     private void bSieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSieteActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"7");
+        tPantalla.setText(tPantalla.getText().concat("7"));
     }//GEN-LAST:event_bSieteActionPerformed
 
     private void bOchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOchoActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"8");
+        tPantalla.setText(tPantalla.getText().concat("8"));
     }//GEN-LAST:event_bOchoActionPerformed
 
     private void bCuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCuatroActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"4");
+        tPantalla.setText(tPantalla.getText().concat("4"));
     }//GEN-LAST:event_bCuatroActionPerformed
 
     private void bCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCincoActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"5");
+        tPantalla.setText(tPantalla.getText().concat("5"));
     }//GEN-LAST:event_bCincoActionPerformed
 
     private void bSeisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeisActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"6");
+        tPantalla.setText(tPantalla.getText().concat("6"));
     }//GEN-LAST:event_bSeisActionPerformed
 
     private void bMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMultiplicarActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"*");
+        // TODO add your handling code here:
+        tPantalla.setText(tPantalla.getText().concat(operadores[2]));
+        String[] numeros = tPantalla.getText().split(" ");
+        double resultado;
+        if(numeros.length>2){
+            switch(operador){
+                case 1: resultado = Double.valueOf(numeros[0]) + Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 2: resultado = Double.valueOf(numeros[0]) - Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 3: resultado = Double.valueOf(numeros[0]) * Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 4: resultado = Double.valueOf(numeros[0]) / Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                default: break;
+            }
+        }
+        operador = 3;
+    //GEN-LAST:event_bmulActionPerformed 
     }//GEN-LAST:event_bMultiplicarActionPerformed
 
     private void bUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUnoActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"1");
+        tPantalla.setText(tPantalla.getText().concat("1"));
     }//GEN-LAST:event_bUnoActionPerformed
 
     private void bTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTresActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"3");
+        tPantalla.setText(tPantalla.getText().concat("3"));
     }//GEN-LAST:event_bTresActionPerformed
 
     private void bRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRestarActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"-");
+        tPantalla.setText(tPantalla.getText().concat(operadores[1]));
+        String[] numeros = tPantalla.getText().split(" ");
+        double resultado;
+        if(numeros.length>2){
+            switch(operador){
+                case 1: resultado = Double.valueOf(numeros[0]) + Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 2: resultado = Double.valueOf(numeros[0]) - Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 3: resultado = Double.valueOf(numeros[0]) * Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 4: resultado = Double.valueOf(numeros[0]) / Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                default: break;
+            }
+        }
+        operador = 2;
+    //GEN-LAST:event_brestActionPerformed  
     }//GEN-LAST:event_bRestarActionPerformed
 
     private void bCeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCeroActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"0");
+        tPantalla.setText(tPantalla.getText().concat("0"));
     }//GEN-LAST:event_bCeroActionPerformed
 
     private void bPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPuntoActionPerformed
@@ -387,12 +450,53 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void bIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIgualActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"=");
+        String[] numeros = tPantalla.getText().split(" ");
+        double resultado;
+        if(numeros.length>2){
+            switch(operador){
+                case 1: resultado = Double.valueOf(numeros[0]) + Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado));
+                break;
+                case 2: resultado = Double.valueOf(numeros[0]) - Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado));
+                break;
+                case 3: resultado = Double.valueOf(numeros[0]) * Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado));
+                break;
+                case 4: resultado = Double.valueOf(numeros[0]) / Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado));
+                break;
+            }
+        }
+    //GEN-LAST:event_bigualActionPerformed
     }//GEN-LAST:event_bIgualActionPerformed
 
     private void bSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSumaActionPerformed
         // TODO add your handling code here:
-        tPantalla.setText(tPantalla.getText() +"+");
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        tPantalla.setText(tPantalla.getText().concat(operadores[0]));
+        String[] numeros = tPantalla.getText().split(" ");
+        double resultado;
+        if(numeros.length>2){
+            switch(operador){
+                case 1: resultado = Double.valueOf(numeros[0]) + Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 2: resultado = Double.valueOf(numeros[0]) - Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 3: resultado = Double.valueOf(numeros[0]) * Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                case 4: resultado = Double.valueOf(numeros[0]) / Double.valueOf(numeros[2]);
+                tPantalla.setText(Double.toString(resultado) + operadores[3]);
+                break;
+                default: break;
+            }
+        }
+        operador = 1;
+    //GEN-LAST:event_bsumaActionPerformed 
     }//GEN-LAST:event_bSumaActionPerformed
 
     private void bAcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAcActionPerformed
@@ -402,7 +506,7 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void bOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOffActionPerformed
         // TODO add your handling code here:
-        
+        System.exit(0);
     }//GEN-LAST:event_bOffActionPerformed
 
     /**
